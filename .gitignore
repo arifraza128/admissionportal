@@ -15,11 +15,13 @@ lerna-debug.log*
 .env.production.local
 *.env
 
-# Production Builds
+# Production Builds & Vite Cache
 dist/
 dist-ssr/
 build/
 *.local
+.vite/
+frontend/.vite/
 
 # System & OS Files
 .DS_Store
