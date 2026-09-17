@@ -1,0 +1,120 @@
+import mongoose from 'mongoose';
+import { USER_IDS, getStudentId } from './usersData.js';
+
+export const documentsSeedData = [
+  // 1. Arif Raza Documents (Verified)
+  {
+    _id: new mongoose.Types.ObjectId('65d000000000000000000001'),
+    studentId: USER_IDS.STUDENT_ARIF,
+    documentType: 'MARKSHEET',
+    fileUrl: '/uploads/documents/arif_marksheet_12th.pdf',
+    fileName: 'arif_marksheet_12th.pdf',
+    originalName: '12th_Standard_Marksheet.pdf',
+    fileSize: 1048576,
+    mimeType: 'application/pdf',
+    status: 'VERIFIED',
+    verified: true,
+    verifiedAt: new Date('2026-08-02T14:00:00Z'),
+    verifiedBy: USER_IDS.OFFICER_PRIYA,
+    uploadedAt: new Date('2026-08-01T09:10:00Z'),
+  },
+  {
+    _id: new mongoose.Types.ObjectId('65d000000000000000000002'),
+    studentId: USER_IDS.STUDENT_ARIF,
+    documentType: 'PHOTO',
+    fileUrl: '/uploads/documents/arif_passport_photo.jpg',
+    fileName: 'arif_passport_photo.jpg',
+    originalName: 'passport_photo.jpg',
+    fileSize: 245760,
+    mimeType: 'image/jpeg',
+    status: 'VERIFIED',
+    verified: true,
+    verifiedAt: new Date('2026-08-02T14:05:00Z'),
+    verifiedBy: USER_IDS.OFFICER_PRIYA,
+    uploadedAt: new Date('2026-08-01T09:12:00Z'),
+  },
+  {
+    _id: new mongoose.Types.ObjectId('65d000000000000000000003'),
+    studentId: USER_IDS.STUDENT_ARIF,
+    documentType: 'AADHAAR',
+    fileUrl: '/uploads/documents/arif_aadhaar_card.pdf',
+    fileName: 'arif_aadhaar_card.pdf',
+    originalName: 'aadhaar_card.pdf',
+    fileSize: 524288,
+    mimeType: 'application/pdf',
+    status: 'VERIFIED',
+    verified: true,
+    verifiedAt: new Date('2026-08-02T14:10:00Z'),
+    verifiedBy: USER_IDS.OFFICER_PRIYA,
+    uploadedAt: new Date('2026-08-01T09:15:00Z'),
+  },
+  // 2. Student 2 Documents (Pending Verification)
+  {
+    _id: new mongoose.Types.ObjectId('65d000000000000000000004'),
+    studentId: getStudentId(2),
+    documentType: 'MARKSHEET',
+    fileUrl: '/uploads/documents/student2_marksheet.pdf',
+    fileName: 'student2_marksheet.pdf',
+    originalName: 'student2_marksheet.pdf',
+    fileSize: 819200,
+    mimeType: 'application/pdf',
+    status: 'PENDING',
+    verified: false,
+    verifiedAt: null,
+    verifiedBy: null,
+    uploadedAt: new Date('2026-08-03T10:20:00Z'),
+  },
+  {
+    _id: new mongoose.Types.ObjectId('65d000000000000000000005'),
+    studentId: getStudentId(2),
+    documentType: 'PHOTO',
+    fileUrl: '/uploads/documents/student2_photo.png',
+    fileName: 'student2_photo.png',
+    originalName: 'student2_photo.png',
+    fileSize: 314572,
+    mimeType: 'image/png',
+    status: 'PENDING',
+    verified: false,
+    verifiedAt: null,
+    verifiedBy: null,
+    uploadedAt: new Date('2026-08-03T10:22:00Z'),
+  },
+  // 3. Student 3 Documents (Rejected / Incomplete)
+  {
+    _id: new mongoose.Types.ObjectId('65d000000000000000000006'),
+    studentId: getStudentId(3),
+    documentType: 'MARKSHEET',
+    fileUrl: '/uploads/documents/student3_marksheet.pdf',
+    fileName: 'student3_marksheet.pdf',
+    originalName: 'student3_marksheet.pdf',
+    fileSize: 614400,
+    mimeType: 'application/pdf',
+    status: 'REJECTED',
+    verified: false,
+    verifiedAt: new Date('2026-08-04T16:00:00Z'),
+    verifiedBy: USER_IDS.OFFICER_PRIYA,
+    uploadedAt: new Date('2026-08-02T11:05:00Z'),
+  },
+];
+
+// Generate verified marksheet documents for Students 4 to 45
+for (let i = 4; i <= 45; i++) {
+  const hex = (i + 10).toString(16).padStart(4, '0');
+  documentsSeedData.push({
+    _id: new mongoose.Types.ObjectId(`65d00000000000000000${hex}`),
+    studentId: getStudentId(i),
+    documentType: 'MARKSHEET',
+    fileUrl: `/uploads/documents/student_${i}_marksheet.pdf`,
+    fileName: `student_${i}_marksheet.pdf`,
+    originalName: `student_${i}_marksheet.pdf`,
+    fileSize: 750000,
+    mimeType: 'application/pdf',
+    status: 'VERIFIED',
+    verified: true,
+    verifiedAt: new Date('2026-08-02T15:00:00Z'),
+    verifiedBy: USER_IDS.OFFICER_PRIYA,
+    uploadedAt: new Date('2026-08-01T10:05:00Z'),
+  });
+}
+
+export default documentsSeedData;
